@@ -6,11 +6,11 @@
 
 // const container = document.getElementById("container");
 
-// // Создать ul
+// Создать ul
 
 // const ulList = document.createElement("ul");
 
-// // Создать input и кнопки
+// Создать input и кнопки
 
 // const formContainer = document.createElement("div");
 
@@ -30,12 +30,14 @@
 // container.append(ulList, formContainer);
 
 // addBtn.addEventListener("click", e => {
-//   if (inputItem.value.trim()) {
+//   if (inputItem.value.trim()) {             // trim() - это функция которая чистит пробелы в тексте
 //     const liItem = document.createElement("li");
 //     liItem.textContent = inputItem.value;
 //     ulList.appendChild(liItem);
+//     //Бонус: четные - красным, нечетные - синим.
 //     const liCount = ulList.children.length;
 //     liItem.classList.add(liCount % 2 === 0 ? "even" : "odd");
+
 //     inputItem.value = "";
 //   }
 // });
@@ -46,6 +48,7 @@
 //   }
 // });
 
+//---------------------------------------------------------------------------------
 /*
 2. В форме авторизации пользователь должен ввести 
 логин и пароль для входа в систему.
@@ -57,65 +60,75 @@
   - если условия не соответствуют требованиям то 
     при потере фокуса поле ввода показывает ошибку
   - после нажатия кнопки Войти надо вывести сообщение 
-    об успешной авторизацие
+    об успешной авторизации
 */
 
-// const loginInput = document.getElementById("login");
-// const passwordInput = document.getElementById("password");
-// const loginInfo = document.getElementById("loginInfo");
-// const passwordInfo = document.getElementById("passwordInfo");
-// const checkBox = document.getElementById("checkBox");
-// const submitBtn = document.getElementById("submitButton");
-// const msgBox = document.getElementById("msgBox");
+// Получаем доступ ко всем элементам: 
 
-// loginInput.addEventListener("focus", e => {
-//   loginInfo.style.display = "block";
-// });
+// const loginInput = document.getElementById('login');
+// const passwordInput = document.getElementById('password');
+// const loginInfo = document.getElementById('loginInfo');
+// const passwordInfo = document.getElementById('passwordInfo');
+// const checkBox = document.getElementById('checkBox');
+// const submitButton = document.getElementById('submitButton');
+// const msgBox = document.getElementById('msgBox');
 
-// loginInput.addEventListener("blur", e => {
-//   console.log(e.currentTarget.value);
+// // Как проверить что находимся на поле 'login':
+
+// loginInput.addEventListener('focus', (e) => {
+//   loginInfo.style.display = 'block';
+// })
+
+// // Как понять что не находимся на 'login' инпуте
+
+// loginInput.addEventListener('blur', (e) => {
 //   const val = e.currentTarget.value;
 //   if (val.length < 4) {
-//     e.currentTarget.classList.add("error");
+//     e.currentTarget.classList.add('error');
 //   } else {
-//     if (e.currentTarget.classList.contains("error")) {
-//       e.currentTarget.classList.remove("error");
+//     if (e.currentTarget.classList.contains('error')) {
+//       e.currentTarget.classList.remove('error');
 //     }
-//   }
+//   }  
+//   loginInfo.style.display = 'none';
+// })
 
-//   loginInfo.style.display = "none";
-// });
+// // на поле 'password'
 
-// passwordInput.addEventListener("focus", e => {
-//   passwordInfo.style.display = "block";
-// });
+// passwordInput.addEventListener('focus', (e) => {
+//   passwordInfo.style.display = 'block';
+// })
 
-// passwordInput.addEventListener("blur", e => {
+// passwordInput.addEventListener('blur', (e) => {
 //   const val = e.currentTarget.value;
-
 //   if (val.length > 8 && val.length < 30) {
-//     if (e.currentTarget.classList.contains("error")) {
-//       e.currentTarget.classList.remove("error");
+//     if (e.currentTarget.classList.contains('error')) {
+//       e.currentTarget.classList.remove('error');
 //     }
 //   } else {
-//     e.currentTarget.classList.add("error");
+//     e.currentTarget.classList.add('error');
 //   }
-//   passwordInfo.style.display = "none";
-// });
 
-// submitBtn.addEventListener("click", e => {
+//   passwordInfo.style.display = 'none';
+// })
+
+// // submitButton 
+
+// submitButton.addEventListener('click', e => {
 //   e.preventDefault();
 //   if (
-//     !loginInput.classList.contains("error") &&
-//     !passwordInput.classList.contains("error") &&
+//     !loginInput.classList.contains('error') &&
+//     !passwordInput.classList.contains('error') &&
 //     checkBox.checked
-//   ) {
-//     msgBox.innerHTML = "Вы успешно авторизованы!";
-//     loginInput.value = "";
-//     passwordInput.value = "";
+//   ) { 
+//     msgBox.innerHTML = 'Вы успешно авторизованы!'
+//     loginInput.value = '';
+//     passwordInput.value = '';
 //     checkBox.checked = false;
 //   }
-// });
+// })
+
+//-----------------------------------------------------------------------  
 
 /* 
 3. Создать небольшую игру :)
@@ -130,35 +143,38 @@
   
 */
 
-// const forms = [
-//   "width: 100px; height: 100px; border-width: 1px; border-color: #000000",
-//   "width: 100px; height: 100px; border-radius: 50%; border-width: 1px; border-color: #000000",
-//   "width: 150px; height: 100px; border-width: 1px; border-color: #000000"
-// ];
+const forms = [
+  "width: 100px; height: 100px; border-width: 1px; border-color: #000000",
+  "width: 100px; height: 100px; border-radius: 50%; border-width: 1px; border-color: #000000",
+  "width: 150px; height: 100px; border-width: 1px; border-color: #000000"
+];
 
-// const colors = ["red", "blue", "green"];
+const colors = ["red", "blue", "green"];
 
-// const randomizer = max => {
-//   return Math.floor(Math.random() * max);
-// };
+const randomizer = max => {
+  return Math.floor(Math.random() * max);
+};
+// Math.floor - округляет до целых чисел;
+// Math.random() - возвращает рандомное число из диапазона [0, 1);
 
-// const container = document.getElementById("container");
-// const form = document.createElement("div");
+const container = document.getElementById('container');
+const form = document.createElement('div');
 
-// container.append(form);
+container.append(form);
 
-// form.addEventListener("click", () => {
-//   generateForm();
-// });
+form.addEventListener('click', () => {
+  generateForm();
+});
 
-// const generateForm = () => {
-//   form.style.cssText = forms[randomizer(forms.length)];
-//   form.style.backgroundColor = colors[randomizer(colors.length)];
-//   form.style.position = "absolute";
-//   form.style.top = `${randomizer(100)}%`;
-//   form.style.left = `${randomizer(100)}%`;
-// };
+const generateForm = () => {
+  form.style.cssText = forms[randomizer(forms.length)];  // Сразу получаем индекс
+  form.style.backgroundColor = colors[randomizer(colors.length)];
+  form.style.position = "absolute";    // чтобы появлялся в рандомных местах
+  form.style.top = `${randomizer(100)}%`;
+  form.style.left = `${randomizer(100)}%`;
+};
+// cssText позволяет строкой добавлять все стили
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   generateForm();
-// });
+document.addEventListener('DOMContentLoaded', () => {   // DOMContentLoaded - отвечает за загрузку страницы, мы знаем что страница уже загружена
+  generateForm();
+})     
